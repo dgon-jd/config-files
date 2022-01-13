@@ -1,2 +1,2 @@
 # config-files
-My configs
+My various profiles and configs
