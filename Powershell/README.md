@@ -39,6 +39,11 @@ Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 ```
 
 ### Autocompletion for arrow keys
+
+![history](../images/powershell/History.gif)
+
+![history](../images/powershell/Autocomplete.gif)
+
 ```
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 
@@ -46,6 +51,10 @@ Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 ```
 
 ### Connect *Get-ChildItemColor*
+
+![history](../images/powershell/colors.jpg)
+
+
 ```
 If (-Not (Test-Path Variable:PSise)) {
     # Only run this in the console and not in the ISE
