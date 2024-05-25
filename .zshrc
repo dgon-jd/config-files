@@ -23,7 +23,18 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
+# Add in snippets
+zinit snippet OMZP::git
+zinit snippet OMZP::sudo
+zinit snippet OMZP::kubectl
+zinit snippet OMZP::kubectx
+zinit snippet OMZP::command-not-found
+
+# Load completions
 autoload -U compinit && compinit
+
+zinit cdreplay -q
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -44,12 +55,19 @@ setopt hist_find_no_dups
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa --icons $realpath'
-
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -a --icons $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'exa -a --icons $realpath'
 # Aliases
 alias la='exa -la --icons'
-alias ls='exa -l --icons'
+alias ls='exa -lia --icons'
 
-#source <(fzf --zsh)
-
+# Shell integrations
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PATH="/home/dgon/.local/bin:$PATH"
+eval "$(zoxide init --cmd cd zsh)"
+
+# Pyenv
+export PATH="/home/dgon/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
